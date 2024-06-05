@@ -79,4 +79,8 @@
     &__clear {
         cursor: pointer;
     }
+
+    &__active {
+        font-weight: bold;
+    }
 }

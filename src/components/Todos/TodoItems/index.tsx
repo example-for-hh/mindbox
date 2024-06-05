@@ -17,10 +17,10 @@ const TodoItems: FC<TTodoItemProps> = ({ listId }) => {
 
     const filteredTodo = () => {
         if (selectedFilter === todosFilters.ACTIVE) {
-            return todos.filter(todo => todo.checked === false)
+            return todos.filter(todo => !todo.checked)
         }
         if (selectedFilter === todosFilters.ARCHIVE) {
-            return todos.filter(todo => todo.checked === true)
+            return todos.filter(todo =>  todo.checked)
         }
 
         return todos;
