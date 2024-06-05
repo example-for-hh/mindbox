@@ -106,7 +106,7 @@ export const todosSlice = createSlice({
             }
         },
 
-        addItem: (state: TListTodos[], action: PayloadAction<any>) => {
+        addItem: (state: TListTodos[], action: PayloadAction<{ listId: number, title: string }>) => {
 
             const { listId, title } = action.payload;
 
@@ -118,7 +118,7 @@ export const todosSlice = createSlice({
 
                 list.todos.push({
                     id: newId,
-                    title: 'Прекрасный кsdsadasdasодe',
+                    title,
                     checked: false,
                 });
             }
