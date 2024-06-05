@@ -1,0 +1,13 @@
+services:
+  frontend:
+    container_name: next
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./client:/app
+        - /app/node_modules
+
+    ports:
+      - 3000:3000
+    command: npm run start

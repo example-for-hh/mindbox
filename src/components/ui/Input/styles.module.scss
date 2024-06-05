@@ -1,0 +1,31 @@
+// @import "../../../styles/mixin";
+
+.input {
+    $input: &;
+
+    width: 100%;
+    padding: 21px 0;
+    &--line {
+        border-bottom: 1px solid #000;
+        background: #fff;
+    }
+
+
+    // @include max_479 {
+    //     padding: 14px 15px;
+    //     &__label {
+    //         font-size: 14px;
+    //         &--absolute {
+    //             top: 15px;
+    //         }
+    //         &--focus {
+    //             transform: translateY(-30px);
+    //             font-size: 10px;
+    //         }
+
+    //         &--textarea {
+    //             transform: translateY(-30px);
+    //         }
+    //     }
+    // }
+}
