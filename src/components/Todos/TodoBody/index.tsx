@@ -1,8 +1,5 @@
 import { FC } from 'react'
 
-import classNames from 'classnames'
-
-
 import IconArrow from '@components/ui/Icons/IconArrow'
 
 
@@ -25,8 +22,14 @@ import TodoClear from '../TodoClear'
 
 import { IconRemove } from '@components/ui/Icons'
 
-
-import styles from '../styles.module.scss'
+import {
+    ToboBodyStyled,
+    TodoBottom,
+    TodoItem,
+    TodoJobs,
+    TodoTitle,
+    TodoTitleSpan
+} from '../styled'
 
 const TodoBody: FC = () => {
 
@@ -36,32 +39,26 @@ const TodoBody: FC = () => {
 
     return (
 
-        <div className={styles['todos__body']}>
+        <ToboBodyStyled>
             {todos.map((list) => (
-                <div
-                    className={
-                        classNames(
-                            styles['todos__item'],
-                            list.isOpened && styles['todos__item--opened']
-                        )
-                    }
+                <TodoItem
+                    $isOpened={list.isOpened}
                     key={list.id}
 
                 >
-                    <div className={styles['todos__title']} >
+                    <TodoTitle>
                         <IconArrow
-                            className={classNames(styles['todos__icon'], styles['todos__icon--arrow'])}
                             width={20}
                             height={20}
                             onClick={() => dispatch(toggleList(list.id))}
                         />
 
-                        <span onClick={() => dispatch(toggleList(list.id))}>{list.title}</span>
+                        <TodoTitleSpan onClick={() => dispatch(toggleList(list.id))}>{list.title}</TodoTitleSpan>
 
                         <IconRemove
                             width={20}
                             height={20}
-                            className={classNames(styles['todos__icon'], styles['todos__icon--add'])}
+                            type='add'
                             onClick={() => dispatch(
                                 modalToggle({
                                     modalType: MODAL_ADD_TODOS,
@@ -74,25 +71,24 @@ const TodoBody: FC = () => {
                         <IconRemove
                             width={20}
                             height={20}
-                            className={classNames(styles['todos__icon'], styles['todos__icon--remove'])}
+                            type='remove'
                             onClick={() => dispatch(removeList(list.id))} />
 
 
-                    </div>
+                    </TodoTitle>
                     {list.isOpened &&
-                        <div className={styles['todos__jobs']}>
-
+                        <TodoJobs>
                             <TodoItems listId={list.id} />
-                        </div>
+                        </TodoJobs>
                     }
-                    <div className={styles['todos__bottom']}>
+                    <TodoBottom>
                         <TodoActiveCount listId={list.id} />
                         <TodoFilter listId={list.id} />
                         <TodoClear listId={list.id} />
-                    </div>
-                </div>
+                    </TodoBottom>
+                </TodoItem>
             ))}
-        </div>
+        </ToboBodyStyled>
 
     )
 }

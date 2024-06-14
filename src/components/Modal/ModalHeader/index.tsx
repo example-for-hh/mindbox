@@ -1,13 +1,13 @@
 import { FC } from "react";
-import styles from '../styles.module.scss';
+import { ModalHeaderStyled } from "../styled";
 
 const ModalHeader: FC<{ children: React.ReactNode }> = ({ children }) => {
 
     return (
         <>
-            <div className={styles['modal__header']}>
+            <ModalHeaderStyled>
                 {children}
-            </div>
+            </ModalHeaderStyled>
         </>
     )
 }

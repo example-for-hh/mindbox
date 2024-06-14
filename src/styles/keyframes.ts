@@ -1,19 +1,21 @@
-@keyframes stroke {
+import { keyframes } from 'styled-components';
+
+export const stroke = keyframes`
     100% {
         stroke-dashoffset: 0;
     }
-}
-@keyframes opacity {
-    100% {
-        opacity: 0.2
-    }
+`;
+
+export const opacity = keyframes`
     0% {
-        opacity: 1
+        opacity: 1;
     }
-}
+    100% {
+        opacity: 0.2;
+    }
+`;
 
-
-@keyframes ellipseAnimation {
+export const ellipseAnimation = keyframes`
     0% {
         border-radius: 50%;
     }
@@ -57,4 +59,4 @@
         transform: rotate(360deg);
         border-radius: 50%;
     }
-}
+`;

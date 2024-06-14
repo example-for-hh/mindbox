@@ -1,13 +1,10 @@
 import { FC, useState } from 'react'
-
-
-
 import { useAppDispatch, useAppSelector } from '@src/hooks/redux'
-
 import { filterBy, todosFilters } from '@store/todos/slice'
-
-import styles from '../styles.module.scss'
 import { selectActiveFilterByListId } from '@store/todos/selectors'
+
+import { TodoActions, TodoSpan } from '../styled'
+
 
 const TodoFilter: FC<{ listId: number }> = ({ listId }) => {
 
@@ -28,26 +25,26 @@ const TodoFilter: FC<{ listId: number }> = ({ listId }) => {
 
     return (
 
-        <div className={styles['todos__actions']}>
-            <span
-                className={selectedFilter === todosFilters.ALL ? styles['todos__active'] : ''}
+        <TodoActions>
+            <TodoSpan
+                $active={selectedFilter === todosFilters.ALL ? true : false}
                 onClick={() => handleFilterClick(todosFilters.ALL)}
             >
                 All
-            </span>
-            <span
-                className={selectedFilter === todosFilters.ACTIVE ? styles['todos__active'] : ''}
+            </TodoSpan>
+            <TodoSpan
+                $active={selectedFilter === todosFilters.ACTIVE ? true : false}
                 onClick={() => handleFilterClick(todosFilters.ACTIVE)}
             >
                 Active
-            </span>
-            <span
-                className={selectedFilter === todosFilters.ARCHIVE ? styles['todos__active'] : ''}
+            </TodoSpan>
+            <TodoSpan
+                $active={selectedFilter === todosFilters.ARCHIVE ? true : false}
                 onClick={() => handleFilterClick(todosFilters.ARCHIVE)}
             >
                 Archive
-            </span>
-        </div>
+            </TodoSpan>
+        </TodoActions>
 
 
     )

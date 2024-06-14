@@ -1,12 +1,7 @@
 import { FC, useRef } from "react";
-import classNames from "classnames";
-// import { IconClose } from '@components/ui/Icons';
-
-
-
-import styles from './styles.module.scss';
 import Button from "@components/ui/Button";
 import { IconClose } from "@components/ui/Icons";
+import { ModalContent, ModalStyled } from "./styled";
 
 
 type TModalProps = {
@@ -26,24 +21,14 @@ const Modal: FC<TModalProps> = ({ children, className, onCloseModal }) => {
     return (
         <>
 
-            <div className={styles['modal']}
-            >
-                <div className={
-                    classNames(
-                        styles['modal__content'],
-                        className && styles[`modal__content--${className}`]
-                    )}
-
-                    ref={modalRef}
-                >
-            
-                    <Button className={styles['modal__close']} onClick={onCloseModal}>
+            <ModalStyled>
+                <ModalContent ref={modalRef}>
+                    <Button modal={true} onClick={onCloseModal}>
                         <IconClose />
                     </Button>
                     {children}
-                </div>
-            </div >
-
+                </ModalContent>
+            </ModalStyled>
 
         </>
     )

@@ -1,5 +1,4 @@
 import { FC } from 'react'
-import classNames from 'classnames'
 import InputCheckbox from '@components/ui/InputCheckbox'
 import { useAppDispatch } from '@src/hooks/redux'
 
@@ -7,12 +6,13 @@ import { TTodoItem } from '@src/types'
 import { removeItem, toggleItem } from '@store/todos/slice'
 import { IconRemove } from '@components/ui/Icons'
 
-import styles from '../styles.module.scss'
+import { TodoItemStyled } from '../styled'
 
 type TTodoItemProps = {
     listId: number,
     todoItem: TTodoItem
 }
+
 
 const TodoItem: FC<TTodoItemProps> = ({ listId, todoItem }) => {
 
@@ -22,8 +22,7 @@ const TodoItem: FC<TTodoItemProps> = ({ listId, todoItem }) => {
     return (
 
 
-        <div
-            className={styles['todos__jobsItem']}
+        <TodoItemStyled
             onClick={() => dispatch(
                 toggleItem({
                     listId,
@@ -37,14 +36,14 @@ const TodoItem: FC<TTodoItemProps> = ({ listId, todoItem }) => {
             <IconRemove
                 width={20}
                 height={20}
-                className={classNames(styles['todos__icon'], styles['todos__icon--remove'])}
+                type='remove'
                 onClick={() => dispatch(
                     removeItem({
                         listId,
                         itemId: todoItem.id
                     })
                 )} />
-        </div>
+        </TodoItemStyled>
 
 
 

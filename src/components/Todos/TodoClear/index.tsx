@@ -1,10 +1,7 @@
 import { FC } from 'react'
-
 import { useAppDispatch } from '@src/hooks/redux'
-
-import { clearTodos, } from '@store/todos/slice'
-
-import styles from '../styles.module.scss'
+import { clearTodos } from '@store/todos/slice'
+import { TodoClearStyled } from '../styled'
 
 type TTodoClearProps = {
     listId: number,
@@ -17,12 +14,9 @@ const TodoClear: FC<TTodoClearProps> = ({ listId, text = 'Clear completed' }) =>
 
     return (
 
-        <div
-            className={styles['todos__clear']}
-            onClick={() => dispatch(clearTodos({ listId }))}
-        >
+        <TodoClearStyled onClick={() => dispatch(clearTodos({ listId }))}>
             {text}
-        </div>
+        </TodoClearStyled>
 
 
     )

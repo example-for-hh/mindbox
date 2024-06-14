@@ -1,16 +1,35 @@
 import { FC } from "react";
-import styles from './styles.module.scss'
+import { styled } from "styled-components";
 
 type TFormControlProps = {
     children: React.ReactNode,
 }
 
+const FormControlStyled = styled.div`
+    position: relative;
+    width: 100%;
+    &:only-child {
+        margin: 0;
+    }
+    &:first-child {
+        margin-bottom: 15px;
+    }
+
+    &:last-child {
+        margin-top: 15px;
+    }
+
+    &:not(:first-child):not(:last-child) {
+        margin: 15px 0;
+    }
+`
+
 const FormControl: FC<TFormControlProps> = ({ children }) => {
 
     return (
-        <div className={styles['form__control']}>
+        <FormControlStyled>
             {children}
-        </div>
+        </FormControlStyled>
     )
 }
 

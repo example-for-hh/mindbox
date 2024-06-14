@@ -1,15 +1,44 @@
 import { FC, InputHTMLAttributes } from "react"
 
-import classNames from "classnames"
 import { IconCheckbox } from "../Icons"
 
-import styles from './styles.module.scss'
+import { styled } from "styled-components"
 
+import { stroke, opacity } from "@src/styles/keyframes";
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
     title: string
     children?: React.ReactNode
 }
+
+const Label = styled.label`
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 0;
+    align-items: center;
+    cursor: pointer;
+`;
+
+const Span = styled.span`
+    padding-left: 15px;
+    opacity: 1;
+    font-size: 18px;
+`
+
+const Input = styled.input`
+    display: none;
+    &:checked + ${Label} {
+        svg {
+            animation: ${stroke} 0.2s cubic-bezier(0.65, 0, 0.45, 1) 0.2s forwards;
+        }
+        ${Span} {
+            text-decoration: line-through;
+            text-decoration-color: #000000;
+            animation: ${opacity} 0.2s cubic-bezier(0.65, 0, 0.45, 1) 0.2s forwards;
+        }
+    }   
+`;
+
 
 const InputCheckbox: FC<InputProps> = ({ title, children, className, ...rest }) => {
 
@@ -18,16 +47,15 @@ const InputCheckbox: FC<InputProps> = ({ title, children, className, ...rest }) 
     return (
         <>
 
-            <input
-                className={classNames(styles['checkbox'], styles['checkbox--checked'])}
+            <Input
                 {...attr}
-                readOnly 
+                readOnly
                 type="checkbox"
             />
-            <label className={styles['checkbox__label']}>
+            <Label>
                 <IconCheckbox />
-                <span className={styles['checkbox__title']}>{title}</span>
-            </label>
+                <Span>{title}</Span>
+            </Label>
 
         </>
     )

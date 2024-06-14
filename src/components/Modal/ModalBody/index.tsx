@@ -1,13 +1,13 @@
 import { FC } from "react";
-import styles from '../styles.module.scss';
+import { ModalBodyStyled } from "../styled";
 
 const ModalBody: FC<{ children: React.ReactNode }> = ({ children }) => {
 
     return (
         <>
-            <div className={styles['modal__body']}>
+            <ModalBodyStyled>
                 {children}
-            </div>
+            </ModalBodyStyled>
         </>
     )
 }

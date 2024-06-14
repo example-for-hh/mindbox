@@ -1,13 +1,12 @@
 import { FC } from 'react'
-
-import styles from './styles.module.scss'
+import { Todo } from './styled'
 
 const Todos: FC<{ children: React.ReactNode }> = ({ children }) => {
 
     return (
-        <div className={styles['todos']}>
+        <Todo>
             {children && children}
-        </div>
+        </Todo>
 
     )
 }

@@ -1,16 +1,25 @@
 import { FC } from "react";
-import styles from './styles.module.scss'
+import { styled } from "styled-components";
 import { ErrorMessage } from "formik";
+
+const Error = styled.div`
+        position: absolute;
+        right: 0;
+        bottom: -15px;
+        color: #000;
+        font-size: 12px;
+    `;
+
 
 const FormError: FC<{ name: string }> = ({ name }) => {
 
 
+
     return (
         <>
-            <div className={styles['error']}>
+            <Error>
                 <ErrorMessage name={name} />
-            </div>
-
+            </Error>
         </>
     )
 }

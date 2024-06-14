@@ -1,10 +1,10 @@
 import { FC } from "react";
-
+import Title from "@components/ui/Title";
 
 const ModalTitle: FC<{ title: string }> = ({ title }) => {
     return (
         <>
-            <h3>{title}</h3>
+            <Title title={title} type="h3" />
         </>
     )
 }

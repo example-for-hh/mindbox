@@ -1,13 +1,13 @@
 import { FC } from "react";
-import styles from '../styles.module.scss';
+import { ModalFooterStyled } from "../styled";
 
 const ModalFooter: FC<{ children: React.ReactNode }> = ({ children }) => {
 
     return (
         <>
-            <div className={styles['modal__footer']}>
+            <ModalFooterStyled>
                 {children}
-            </div>
+            </ModalFooterStyled>
         </>
     )
 }

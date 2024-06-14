@@ -1,16 +1,18 @@
 
 import { FC, InputHTMLAttributes } from "react"
-
-import classNames from "classnames"
-
-import styles from './styles.module.scss'
+import { styled } from "styled-components"
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
     children?: React.ReactNode
     error?: boolean
-
-
 }
+
+const InputStyled = styled.input`
+     width: 100%;
+     padding: 21px 0;
+     border-bottom: 1px solid #000;
+     background: #fff;
+`;
 
 const Input: FC<InputProps> = ({ error = false, ...rest }) => {
 
@@ -22,14 +24,7 @@ const Input: FC<InputProps> = ({ error = false, ...rest }) => {
     return (
         <>
 
-            <input
-                {...attr}
-                className={classNames(
-                    styles['input'],
-                    styles['input--line'],
-                )
-                }
-            />
+            <InputStyled {...attr} />
             {children}
         </>
 
