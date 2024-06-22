@@ -1,9 +1,10 @@
 import { FC } from 'react'
 import { useAppSelector } from '@src/hooks/redux'
-import {  todosFilters } from '@store/todos/slice'
+import { todosFilters } from '@store/todos/slice'
 
 import { selectActiveFilterByListId, selectTodosByListId } from '@store/todos/selectors'
 import TodoItem from '../TodoItem'
+import { TodoEmpty } from '../styled'
 
 type TTodoItemProps = {
     listId: number,
@@ -20,7 +21,7 @@ const TodoItems: FC<TTodoItemProps> = ({ listId }) => {
             return todos.filter(todo => !todo.checked)
         }
         if (selectedFilter === todosFilters.ARCHIVE) {
-            return todos.filter(todo =>  todo.checked)
+            return todos.filter(todo => todo.checked)
         }
 
         return todos;
@@ -28,9 +29,13 @@ const TodoItems: FC<TTodoItemProps> = ({ listId }) => {
 
     return (
         <>
-            {filteredTodo().map((todo) => (
-                <TodoItem listId={listId} todoItem={todo} key={todo.id} />
-            ))}
+            {todos && todos.length > 0
+                ?
+                filteredTodo().map((todo) => (
+                    <TodoItem listId={listId} todoItem={todo} key={todo.id} />
+                ))
+                : <TodoEmpty>Список задач пока пустой</TodoEmpty>
+            }
         </>
     );
 }

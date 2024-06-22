@@ -1,34 +1,37 @@
-import { FC, ButtonHTMLAttributes } from "react"
-
-import styled, { css } from 'styled-components'
-
+import React, { FC } from "react";
+import styled, { css } from "styled-components";
+import { ButtonHTMLAttributes } from "react";
 
 type TButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
     text?: string | React.ReactNode,
     typeText?: boolean,
-    children?: React.ReactNode
     modal?: boolean
 }
 
 type TBtn = {
-    typeText?: boolean
-    modal?: boolean
+    $typeText?: boolean,
+    $modal?: boolean
 }
-
 
 const StyledButton = styled.button<TBtn>`
     padding: 10px;
     background: #000;
     color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: transform 1s ease, background-color 0.2s ease;
+
     ${(props) =>
-        props.typeText &&
+        props.$typeText &&
         css`
+            padding: 0;
             background: none;
             color: #000;
             text-decoration: underline;
         `}
+
     ${(props) =>
-        props.modal &&
+        props.$modal &&
         css`
             position: absolute;
             top: 0;
@@ -38,10 +41,14 @@ const StyledButton = styled.button<TBtn>`
             align-items: center;
             width: 40px;
             height: 40px;
-            background: #fff !important;
-        
+            background: #fff;
+
             &:hover {
                 transform: rotate(360deg);
+                background: #000;
+                svg {
+                    fill: #fff;
+                }
             }
             svg {
                 width: 20px;
@@ -56,23 +63,20 @@ const ButtonSpan = styled.span`
     background: none;
 `;
 
-
-const Button: FC<TButtonProps> = ({ typeText = false, type = 'button', ...rest }) => {
-
-    const { text, className, children, ...attr } = rest
-
+const Button: FC<TButtonProps> = ({ typeText = false, modal = false, text, children, ...rest }) => {
+    const { type = 'button', ...attr } = rest;
 
     return (
-        <>
-            <StyledButton
-                {...{ type, typeText }}
-                {...attr}
-            >
-                {text && <ButtonSpan>{text}</ButtonSpan>}
-                {children}
-            </StyledButton>
-        </>
+        <StyledButton
+            {...attr}
+            type={type}
+            $typeText={typeText}
+            $modal={modal}
+        >
+            {text && <ButtonSpan>{text}</ButtonSpan>}
+            {children}
+        </StyledButton>
+    );
+};
 
-    )
-}
 export default Button;

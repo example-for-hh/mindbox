@@ -16,8 +16,8 @@ const ModalView: FC = () => {
                 const ModalComponent = modalComponents[modalView.modalType];
 
                 return (
-                    <ModalViewStyled key={index}>
-                        {ModalComponent && <ModalComponent props={modalView.props ?? null} />}
+                    <ModalViewStyled key={modalView.id || index}>
+                        {ModalComponent && <ModalComponent props={modalView.props ?? null} key={index} />}
                     </ModalViewStyled>
                 );
             })}

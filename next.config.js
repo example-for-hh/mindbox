@@ -5,7 +5,13 @@ const path = require('path');
 
 module.exports = {
     compiler: {
-        styledComponents: true,
+        styledComponents: {
+
+            displayName: true,
+        
+            ssr: true,
+          
+          },
     },
     webpack: (config, { isServer }) => {
         config.module.rules.push({

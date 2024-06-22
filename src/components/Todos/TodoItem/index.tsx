@@ -3,7 +3,7 @@ import InputCheckbox from '@components/ui/InputCheckbox'
 import { useAppDispatch } from '@src/hooks/redux'
 
 import { TTodoItem } from '@src/types'
-import { removeItem, toggleItem } from '@store/todos/slice'
+import { deleteTodo, toggleItem } from '@store/todos/slice'
 import { IconRemove } from '@components/ui/Icons'
 
 import { TodoItemStyled } from '../styled'
@@ -22,25 +22,25 @@ const TodoItem: FC<TTodoItemProps> = ({ listId, todoItem }) => {
     return (
 
 
-        <TodoItemStyled
-            onClick={() => dispatch(
-                toggleItem({
-                    listId,
-                    itemId: todoItem.id
-                })
-            )}
-
-        >
-            <InputCheckbox title={todoItem.title} checked={todoItem.checked} />
+        <TodoItemStyled>
+            <InputCheckbox
+                title={todoItem.title}
+                checked={todoItem.checked}
+                onClick={() => dispatch(
+                    toggleItem({
+                        id: todoItem.id,
+                        listId,
+                    })
+                )} />
 
             <IconRemove
                 width={20}
                 height={20}
                 type='remove'
                 onClick={() => dispatch(
-                    removeItem({
+                    deleteTodo({
                         listId,
-                        itemId: todoItem.id
+                        id: todoItem.id
                     })
                 )} />
         </TodoItemStyled>

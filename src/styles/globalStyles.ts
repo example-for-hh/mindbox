@@ -62,7 +62,9 @@ const GlobalStyles = createGlobalStyle`
       width: 100%;
       height: 100%;
   }
-
+  svg {
+    cursor: pointer;
+  }
   input,
   textarea {
       margin: 0;

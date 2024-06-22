@@ -5,7 +5,7 @@ import IconArrow from '@components/ui/Icons/IconArrow'
 
 import { useAppDispatch, useAppSelector } from '@src/hooks/redux'
 import { selectTodos } from '@store/todos/selectors'
-import { TListTodos } from '@src/types'
+import { TListTodoClient } from '@src/types'
 import { removeList, toggleList } from '@store/todos/slice'
 
 import { modalToggle } from '@store/modal/slice'
@@ -28,19 +28,21 @@ import {
     TodoItem,
     TodoJobs,
     TodoTitle,
-    TodoTitleSpan
+    TodoTitleSpan,
+    TodoWrapperIcons
 } from '../styled'
+import Title from '@components/ui/Title'
 
 const TodoBody: FC = () => {
 
     const dispatch = useAppDispatch()
 
-    const todos: TListTodos[] = useAppSelector(selectTodos)
+    const todos: TListTodoClient[] = useAppSelector(selectTodos)
 
     return (
 
         <ToboBodyStyled>
-            {todos.map((list) => (
+            {todos.length > 0 ? todos.map((list) => (
                 <TodoItem
                     $isOpened={list.isOpened}
                     key={list.id}
@@ -55,24 +57,28 @@ const TodoBody: FC = () => {
 
                         <TodoTitleSpan onClick={() => dispatch(toggleList(list.id))}>{list.title}</TodoTitleSpan>
 
-                        <IconRemove
-                            width={20}
-                            height={20}
-                            type='add'
-                            onClick={() => dispatch(
-                                modalToggle({
-                                    modalType: MODAL_ADD_TODOS,
-                                    modalProps: {
-                                        listId: list.id
-                                    }
-                                }))}
-                        />
+                        <TodoWrapperIcons>
+                            <IconRemove
+                                width={20}
+                                height={20}
+                                type='add'
+                                onClick={() => dispatch(
+                                    modalToggle({
+                                        modalType: MODAL_ADD_TODOS,
+                                        modalProps: {
+                                            listId: list.id
+                                        }
+                                    }))}
+                            />
 
-                        <IconRemove
-                            width={20}
-                            height={20}
-                            type='remove'
-                            onClick={() => dispatch(removeList(list.id))} />
+                            <IconRemove
+                                width={20}
+                                height={20}
+                                type='remove'
+                                onClick={() => dispatch(removeList(list.id))} />
+
+
+                        </TodoWrapperIcons>
 
 
                     </TodoTitle>
@@ -87,7 +93,8 @@ const TodoBody: FC = () => {
                         <TodoClear listId={list.id} />
                     </TodoBottom>
                 </TodoItem>
-            ))}
+            )) : <Title title="Список задач пуст" type='h2' />}
+
         </ToboBodyStyled>
 
     )

@@ -2,6 +2,7 @@ import {
     configureStore,
     combineReducers,
 } from '@reduxjs/toolkit';
+import 'symbol-observable';
 import { todosSlice } from './todos/slice';
 import { modalSlice } from './modal/slice';
 

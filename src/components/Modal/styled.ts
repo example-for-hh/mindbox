@@ -32,7 +32,7 @@ export const ModalHeaderStyled = styled.div`
 `
 
 export const ModalFooterStyled = styled.div`
-     display: flex;
+        display: flex;
         justify-content: flex-end;
         align-items: flex-end;
         height: 100%;
@@ -63,4 +63,10 @@ export const ModalBodyStyled = styled.div`
     justify-content: center;
     padding-top: 24px;
     padding-bottom: 24px;
+`
+
+export const ModalBtnAdd = styled.div`
+    position: absolute;
+    bottom: 0;
+
 `

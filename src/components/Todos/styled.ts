@@ -11,6 +11,7 @@ export const TodoActive = styled.div`
 export const TodoItemStyled = styled.div`
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 15px 0px;
 `
 
@@ -74,4 +75,28 @@ export const TodoTitleSpan = styled.span`
 
 export const TodoClearStyled = styled.div`
     cursor: pointer;
+`
+
+export const TodoWrapperIcons = styled.div`
+    svg {
+    &:only-child {
+            margin: 0;
+        }
+
+        &:not(:first-child) {
+            margin-left: 5px;
+        }
+
+        &:not(:last-child) {
+            margin-right: 5px;
+        }
+
+        &:not(:first-child):not(:last-child) {
+            margin: 0 5px;
+        }
+    }
+`
+
+export const TodoEmpty = styled.div`
+    margin: 10px
 `

@@ -6,7 +6,7 @@ const Error = styled.div`
         position: absolute;
         right: 0;
         bottom: -15px;
-        color: #000;
+        color: #ff0000;
         font-size: 12px;
     `;
 

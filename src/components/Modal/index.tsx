@@ -6,21 +6,15 @@ import { ModalContent, ModalStyled } from "./styled";
 
 type TModalProps = {
     children: React.ReactNode,
-    className?: string
     onCloseModal?: () => void
 }
 
-
-const Modal: FC<TModalProps> = ({ children, className, onCloseModal }) => {
+const Modal: FC<TModalProps> = ({ children, onCloseModal }) => {
 
     const modalRef = useRef<HTMLDivElement>(null)
 
-
-
-
     return (
         <>
-
             <ModalStyled>
                 <ModalContent ref={modalRef}>
                     <Button modal={true} onClick={onCloseModal}>
@@ -29,7 +23,6 @@ const Modal: FC<TModalProps> = ({ children, className, onCloseModal }) => {
                     {children}
                 </ModalContent>
             </ModalStyled>
-
         </>
     )
 }

@@ -16,6 +16,7 @@ import FormControl from "@components/ui/FormControl";
 import Input from "@components/ui/Input";
 import FormError from "@components/ui/FormError";
 import { addList } from "@store/todos/slice";
+import { ModalBtnAdd } from "../styled";
 
 const ModalAddList: FC = () => {
 
@@ -93,7 +94,7 @@ const ModalAddList: FC = () => {
                                     </FormControl>
                                     <FieldArray name="todos">
                                         {({ push, remove }) => (
-                                            <div>
+                                            <>
                                                 {values.todos.map((todo, index) => (
                                                     <FormControl key={index}>
                                                         <Input
@@ -106,11 +107,18 @@ const ModalAddList: FC = () => {
                                                             error={touched.todos && touched.todos[index] && errors.todos && errors.todos[index] ? true : false}
                                                         />
                                                         {touched.todos && touched.todos[index] && errors.todos && errors.todos[index] && <FormError name={`todos.${index}.title`} />}
-                                                        <Button type="button" onClick={() => remove(index)} typeText={true}>Удалить</Button>
+                                                        <Button onClick={() => remove(index)} typeText={true}>Удалить</Button>
                                                     </FormControl>
                                                 ))}
-                                                <Button type="button" onClick={() => push({ title: '' })} typeText={true}>Добавить задачу</Button>
-                                            </div>
+
+                                                <ModalBtnAdd>
+                                                    <Button onClick={() => push({ title: '' })} >
+                                                        Добавить задачу
+                                                    </Button>
+                                                </ModalBtnAdd>
+                                                
+                                            </>
+
                                         )}
                                     </FieldArray>
                                 </ModalBody>

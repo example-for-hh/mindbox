@@ -16,7 +16,7 @@ import { modalToggle } from "@store/modal/slice";
 import FormControl from "@components/ui/FormControl";
 import Input from "@components/ui/Input";
 import FormError from "@components/ui/FormError";
-import { addItem } from "@store/todos/slice";
+import {  createTodo } from "@store/todos/slice";
 
 const ModalAddTodos: FC = () => {
 
@@ -35,7 +35,7 @@ const ModalAddTodos: FC = () => {
 
 
     const handleSubmut = (values: FormikValues) => {
-        dispatch(addItem({
+        dispatch(createTodo({
             listId: modal.modalProps.listId,
             title: values.title,
         }))

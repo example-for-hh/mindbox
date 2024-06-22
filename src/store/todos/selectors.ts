@@ -15,7 +15,7 @@ export const selectListById = (listId: number) => createSelector(
 export const selectActiveFilterByListId = (listId: number) => createSelector(
     [selectListById(listId)],
     (list) => {
-        return list?.filterSelected;
+        return list?.selectedFilter;
     }
 );
 

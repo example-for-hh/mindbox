@@ -13,7 +13,6 @@ const IconRemoveStyled = styled.svg<TIconSvg & { type?: string }>`
 
   ${(props) => props.type === 'remove' && css`
         fill: red;
-        padding-left: 15px;
     `}
 `
 

@@ -1,9 +1,12 @@
-export type TListTodos = {
+export type TListTodo = {
     id: number,
     title: string,
-    isOpened: boolean,
     todos: TTodoItem[]
-    filterSelected: string
+}
+
+export type TListTodoClient = & TListTodo & {
+    isOpened: boolean,
+    selectedFilter: string
 }
 
 export type TTodoItem = {

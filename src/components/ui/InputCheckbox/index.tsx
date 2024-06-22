@@ -1,4 +1,4 @@
-import { FC, InputHTMLAttributes } from "react"
+import { FC, InputHTMLAttributes, MouseEventHandler } from "react"
 
 import { IconCheckbox } from "../Icons"
 
@@ -8,7 +8,8 @@ import { stroke, opacity } from "@src/styles/keyframes";
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
     title: string
-    children?: React.ReactNode
+    children?: React.ReactNode,
+    onClick?: MouseEventHandler<HTMLLabelElement>;
 }
 
 const Label = styled.label`
@@ -40,19 +41,20 @@ const Input = styled.input`
 `;
 
 
-const InputCheckbox: FC<InputProps> = ({ title, children, className, ...rest }) => {
+const InputCheckbox: FC<InputProps> = ({ title, children, ...rest }) => {
 
-    const { ...attr } = rest
+    const { onClick, id, ...attr } = rest
 
     return (
         <>
 
             <Input
                 {...attr}
+                id={id}
                 readOnly
                 type="checkbox"
             />
-            <Label>
+            <Label htmlFor={id} onClick={onClick}>
                 <IconCheckbox />
                 <Span>{title}</Span>
             </Label>
